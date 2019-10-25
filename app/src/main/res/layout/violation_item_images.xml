@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:id="@+id/images"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+>
+        <ImageView
+            android:id="@+id/iv_1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_1" />
+
+        <ImageView
+            android:id="@+id/iv_2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/iv_1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_2" />
+
+        <ImageView
+            android:id="@+id/iv_3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/iv_1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_3" />
+
+        <ImageView
+            android:id="@+id/iv_4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/iv_1"
+            android:layout_toRightOf="@id/iv_3"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_4" />
+    </RelativeLayout>
+
+</LinearLayout>

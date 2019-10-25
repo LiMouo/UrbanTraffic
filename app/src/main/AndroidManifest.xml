@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="top.codepy.urbantraffic">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".RealtimeDisplayCatalog.RealtimeDisplayActivity"></activity>
+
+        <service
+            android:name=".EnvironCatalog.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".NetworkSettingCatalog.NetworkSettingActivity" />
+        <activity
+            android:name=".EnvironCatalog.EnvironActivity"
+            android:label="环境指标"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".BillCatalog.BillActivity"
+            android:label="账单管理"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".TrafficLightsCatalog.TrafficLightsActivity"
+            android:label="红绿灯管理"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".ViolationCatalog.ImagesActivity"
+            android:label="违章图片"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".ViolationCatalog.VideosActivity"
+            android:label="视屏播放"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".ViolationCatalog.ViolationActivity"
+            android:label="车辆违章"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".RegistryCatalog.RegistryActivity"
+            android:label="用户注册"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ETCCatalog.ETCActivity"
+            android:label="我的账户"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".LoginCatalog.LoginActivity"
+            android:label="登录页面"
+            android:screenOrientation="landscape" /> <!-- android:screenOrientation="landscape" 横屏 portrait竖屏 -->
+        <activity
+            android:name=".GuideCatalog.GuideActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
+    </application>
+
+</manifest>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/change_xml"
+    android:orientation="vertical">
+
+    <Toolbar
+        android:id="@+id/toolbar_registry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#3AA1DB">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="用户注册"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="#00000000"
+            android:drawableLeft="@drawable/network_setting"
+            android:drawablePadding="2dp"
+            android:text="网络设置"
+            android:textColor="@drawable/btn_network"
+            android:textSize="18sp" />
+    </Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/registry_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/user_64_1"
+                android:drawablePadding="5dp"
+                android:hint="用户名"
+                android:inputType="text"
+                android:maxLength="8"
+                android:textColorHint="#F8DFDF"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/registry_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/pass_x64"
+                android:drawablePadding="5dp"
+                android:hint="密码"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:textColorHint="#F8DFDF"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/registry_pass_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/change_pass64"
+                android:drawablePadding="5dp"
+                android:hint="确认密码"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:textColorHint="#F8DFDF"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/registry_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:digits="0123456789"
+                android:drawableLeft="@drawable/phone_x64"
+                android:drawablePadding="5dp"
+                android:hint="手机号码/选填"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:textColorHint="#F8DFDF"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btn_registry_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_registry"
+                android:text="注册" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>

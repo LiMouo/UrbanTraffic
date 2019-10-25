@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_user"
+        android:title="账户管理"></item>
+    <item
+        android:id="@+id/menu_green"
+        android:title="红绿灯管理"></item>
+    <item
+        android:id="@+id/menu_order"
+        android:title="账单管理"></item>
+    <item
+        android:id="@+id/menu_violation"
+        android:title="车辆违章"></item>
+    <item
+        android:id="@+id/menu_environ"
+        android:title="环境指标"></item>
+    <item
+        android:id="@+id/menu_realtime"
+        android:title="实时显示"></item>
+</menu>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/change_xml"
+    android:orientation="vertical">
+
+    <top.codepy.urbantraffic.ToolsCatalog.ToolbarMaster
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:paddingLeft="70dp"
+        android:paddingRight="70dp">
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/bottom_1"
+                android:layout_width="110dp"
+                android:layout_height="55dp"
+                android:background="@drawable/radiobutton_xml"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="违章视频"
+                android:textColor="#fff" />
+
+            <RadioButton
+                android:id="@+id/bottom_2"
+                android:layout_width="110dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="-1dp"
+                android:background="@drawable/radiobutton_xml"
+                android:button="@null"
+                android:gravity="center"
+                android:text="违章图片"
+                android:textColor="#fff" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="-1dp"
+                android:background="#000" />
+        </RadioGroup>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </androidx.viewpager.widget.ViewPager>
+<!--        <GridView-->
+<!--            android:id="@+id/video_grid"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:background="#00FFFFF0"-->
+<!--            android:numColumns="4" />-->
+        <!--        android:numColumns 限制列数-->
+    </LinearLayout>
+</LinearLayout>
