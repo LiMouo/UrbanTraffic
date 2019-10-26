@@ -44,8 +44,11 @@ public class OkHttpData {
     public static JSONObject JsonObjectRead() {
         JSONObject jsonObject = null;
         try {
-            jsonObject = new JSONObject(jsonData);
-          //  Log.e(TAG, "" + jsonObject);
+            if (jsonData != null) {
+                jsonObject = new JSONObject(jsonData);
+            }
+
+            //  Log.e(TAG, "" + jsonObject);
         } catch (JSONException e) {
             e.printStackTrace();
         }

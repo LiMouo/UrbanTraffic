@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,7 +32,11 @@ public class MyService extends Service {
     private SQLiteEnvironMaster environMaster;
     private SQLiteDatabase db;
     private Context context;
-    public MyService(){ }
+    private Boolean isService = true;
+
+    public MyService() {
+    }
+
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
@@ -53,11 +58,13 @@ public class MyService extends Service {
         i++;
         return super.onStartCommand(intent, flags, startId);
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.e(TAG, "onDestroy 活动被停止销毁");
     }
+
     private void getData() {
         final String url = "http://192.168.3.5:8088/transportservice/action/GetAllSense.do";
         Map<String, String> map = new HashMap<>();
@@ -75,25 +82,30 @@ public class MyService extends Service {
                 do {
                     long startTime1 = System.currentTimeMillis();//获取开始时间
                     OkHttpData.sendConnect(url, jsonObject.toString());
-                    Log.e(TAG, "环境指标:" + OkHttpData.JsonObjectRead().toString());
-                    j1 = OkHttpData.JsonObjectRead();
-                    OkHttpData.sendConnect(url1, jsonObject1.toString());
-                    Log.e(TAG, "道路指标:" + OkHttpData.JsonObjectRead().toString());
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            EnvironActivity.recycler_environ.setAdapter(new EnvironAdapter(context, json(OkHttpData.JsonObjectRead())));
-                            Log.e(TAG, "------数据写入完------");
+                    if (OkHttpData.JsonObjectRead() != null) {
+                        Log.e(TAG, "环境指标:" + OkHttpData.JsonObjectRead().toString());
+                        j1 = OkHttpData.JsonObjectRead();
+                        OkHttpData.sendConnect(url1, jsonObject1.toString());
+                        Log.e(TAG, "道路指标:" + OkHttpData.JsonObjectRead().toString());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                EnvironActivity.recycler_environ.setAdapter(new EnvironAdapter(context, json(OkHttpData.JsonObjectRead())));
+                                Log.e(TAG, "------数据写入完------");
+                            }
+                        });
+                        try {
+                            long endTime1 = System.currentTimeMillis();//获取结束时间
+                            Log.e(TAG, "代码运行时间：" + (endTime1 - startTime1) + "ms");//输出程序运行时间
+                            Thread.sleep(3000 - (endTime1 - startTime1));
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                    });
-                    try {
-                        long endTime1 = System.currentTimeMillis();//获取结束时间
-                        Log.e(TAG,"代码运行时间：" + (endTime1 - startTime1) + "ms");//输出程序运行时间
-                        Thread.sleep(3000-(endTime1 - startTime1));
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    } else {
+                        Log.e(TAG, "网络错误");
+                        isService = false;
                     }
-                } while (true);
+                } while (isService);
             }
 
 
