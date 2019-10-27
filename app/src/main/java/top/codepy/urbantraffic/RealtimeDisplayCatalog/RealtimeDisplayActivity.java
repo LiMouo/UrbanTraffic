@@ -30,7 +30,8 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
     private View view_1, view_2, view_3, view_4, view_5, view_6;
     public static List<TextView> textViewData;
     private TextView retv_1, retv_2, retv_3, retv_4, retv_5, retv_6;
-
+    private List<LineChart> lineCharts;
+    private LineChart lineChart_1,lineChart_2,lineChart_3,lineChart_4,lineChart_5,lineChart_6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +73,8 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
         textViewData.add(retv_4);
         textViewData.add(retv_5);
         textViewData.add(retv_6);
+
+
     }
 
     /**
@@ -113,6 +116,27 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
 
             }
         });
+        /*找到每个viewPager 里的 lineChart*/
+        lineChart_1 = view_1.findViewById(R.id.lineChart_1);
+        lineChart_2 = view_2.findViewById(R.id.lineChart_2);
+        lineChart_3 = view_3.findViewById(R.id.lineChart_3);
+        lineChart_4 = view_4.findViewById(R.id.lineChart_4);
+        lineChart_5 = view_5.findViewById(R.id.lineChart_5);
+        lineChart_6 = view_6.findViewById(R.id.lineChart_6);
+        lineCharts = new ArrayList<>();
+        lineCharts.add(lineChart_1);
+        lineCharts.add(lineChart_2);
+        lineCharts.add(lineChart_3);
+        lineCharts.add(lineChart_4);
+        lineCharts.add(lineChart_5);
+        lineCharts.add(lineChart_6);
+    }
+
+    private void setLincChart(LineChart lincChart) {
+        lincChart.setTouchEnabled(false);           /*设置不可触摸 不显示坐标辅助线*/
+        lincChart.setLogEnabled(false);             /*设置不显示日志*/
+        lincChart.setDrawBorders(false);            /*设置不显示表格边框线*/
+        lincChart.setDescription(null);             /*设置图标的描述文子为空*/
     }
 
     /**
