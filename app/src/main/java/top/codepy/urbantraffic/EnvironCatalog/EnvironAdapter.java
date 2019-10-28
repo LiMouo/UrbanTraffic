@@ -35,10 +35,7 @@ public class EnvironAdapter extends RecyclerView.Adapter<EnvironAdapter.EnvironV
         arr_1[3] = values.getAsString("co2");
         arr_1[4] = values.getAsString("pm25");
         arr_1[5] = values.getAsString("Status");
-
     }
-
-
     @NonNull
     @Override
     public EnvironViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -54,12 +51,10 @@ public class EnvironAdapter extends RecyclerView.Adapter<EnvironAdapter.EnvironV
          holder.re_red.setBackgroundResource(R.drawable.envicron_red);
         }
     }
-
     @Override
     public int getItemCount() {
         return arr.length;
     }
-
     public class EnvironViewHolder extends RecyclerView.ViewHolder {
         private TextView environ_title;
         private TextView environ_number;

@@ -12,14 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RealtimeDisplayCatalog.RealtimeDisplayActivity"></activity>
+        <activity
+            android:name=".ThresholdCatalog.ThresholdActivity"
+            android:label="阈值"
+            android:screenOrientation="sensorLandscape"></activity>
 
         <service
             android:name=".EnvironCatalog.MyService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".NetworkSettingCatalog.NetworkSettingActivity" />
+        <activity
+            android:name=".RealtimeDisplayCatalog.RealtimeDisplayActivity"
+            android:label="实时显示"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".NetworkSettingCatalog.NetworkSettingActivity"
+            android:label="网络设置" />
         <activity
             android:name=".EnvironCatalog.EnvironActivity"
             android:label="环境指标"

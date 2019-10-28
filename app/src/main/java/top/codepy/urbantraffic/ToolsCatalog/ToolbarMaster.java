@@ -23,6 +23,7 @@ import top.codepy.urbantraffic.LoginCatalog.LoginActivity;
 import top.codepy.urbantraffic.R;
 import top.codepy.urbantraffic.RealtimeDisplayCatalog.RealtimeDisplayActivity;
 import top.codepy.urbantraffic.RegistryCatalog.RegistryActivity;
+import top.codepy.urbantraffic.ThresholdCatalog.ThresholdActivity;
 import top.codepy.urbantraffic.TrafficLightsCatalog.TrafficLightsActivity;
 import top.codepy.urbantraffic.ViolationCatalog.ViolationActivity;
 
@@ -83,6 +84,11 @@ public class ToolbarMaster extends LinearLayout {
                             case R.id.menu_realtime:
                                 Log.e(TAG, "实时显示 ");
                                 intent = new Intent(mContext, RealtimeDisplayActivity.class);
+                                mContext.startActivity(intent);
+                                break;
+                            case R.id.menu_Threshold:
+                                Log.e(TAG, "阈值设置 ");
+                                intent = new Intent(mContext, ThresholdActivity.class);
                                 mContext.startActivity(intent);
                                 break;
                         }

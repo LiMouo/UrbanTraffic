@@ -18,4 +18,7 @@
     <item
         android:id="@+id/menu_realtime"
         android:title="实时显示"></item>
+    <item
+        android:id="@+id/menu_Threshold"
+        android:title="阈值设置"></item>
 </menu>

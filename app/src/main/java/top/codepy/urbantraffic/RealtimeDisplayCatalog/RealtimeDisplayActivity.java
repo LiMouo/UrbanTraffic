@@ -33,7 +33,12 @@ import top.codepy.urbantraffic.ToolsCatalog.ToolbarMaster;
 
 /**
  * 实时更新图表实现思路:
- *  1.
+ *  1.生成6 个页面用于ViewPager 切换不同的实时数据图表
+ *  2.查询数据库里的各各数据 得到数据
+ *  3.线程里实时更新 查询数据库中的值 以达到 实时更新
+ *  4.注:  每次更新值 都刷新
+ *         lincChart.notifyDataSetChanged(); // let the chart know it's data changed
+ *         lincChart.invalidate(); // refresh
  */
 
 public class RealtimeDisplayActivity extends AppCompatActivity {
@@ -64,7 +69,6 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
         ToolbarMaster.MenuCreate();
         initTextView();      //找到控件TextView
         initViewPager();     //设置viewPager 渲染
-        //getSQLiteDate(1);
         new Thread(new Runnable() {
             @Override
             public void run() {
