@@ -97,7 +97,9 @@ public class MyService extends Service {
                         try {
                             long endTime1 = System.currentTimeMillis();//获取结束时间
                             Log.e(TAG, "代码运行时间：" + (endTime1 - startTime1) + "ms");//输出程序运行时间
-                            Thread.sleep(3000 - (endTime1 - startTime1));
+                          if ((endTime1-startTime1) > 3000){
+                          }else {
+                            Thread.sleep(3000 - (endTime1 - startTime1));}
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -116,7 +118,7 @@ public class MyService extends Service {
         ContentValues values = new ContentValues();
         try {
             values.put("pm25", j1.getString("pm2.5"));
-            values.put("co2", j1.getString("co2"));
+            values.put("cq2", j1.getString("co2"));
             values.put("LightIntensity", j1.getString("LightIntensity"));
             values.put("humidity", j1.getString("humidity"));
             values.put("temperature", j1.getString("temperature"));
@@ -127,7 +129,6 @@ public class MyService extends Service {
             if (count > 20) {
                 db.execSQL("delete from environ where id = (select id from environ limit 1)");
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -136,7 +137,7 @@ public class MyService extends Service {
 
     private static String getdate() {
         Date date = new Date();
-        SimpleDateFormat st = new SimpleDateFormat("MM:ss");
+        SimpleDateFormat st = new SimpleDateFormat("mm:ss");
         String datetime = st.format(date);
         Log.e(TAG, "等待时间: " + st.format(date));
         return datetime;

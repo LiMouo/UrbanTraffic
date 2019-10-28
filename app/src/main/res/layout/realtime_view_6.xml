@@ -3,12 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:background="@drawable/change_xml">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="道路状态"
+        android:textSize="20sp"
         android:gravity="center"
-        android:text="第六页"
-        android:textSize="20sp" />
+        android:textColor="#ffffff"/>
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChart_6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </LinearLayout>
