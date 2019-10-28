@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -38,10 +39,12 @@ public class EnvironActivity extends AppCompatActivity {
     private JSONObject j1;
     private SQLiteEnvironMaster environMaster;
     private SQLiteDatabase db;
+    public static Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_environ);
+        context = this;
         environMaster = new SQLiteEnvironMaster(this, "Environ.db");
         db = environMaster.getWritableDatabase();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -56,6 +59,7 @@ public class EnvironActivity extends AppCompatActivity {
        // new MyService(this,recycler_environ,db);
 
         Intent intent = new Intent(this, MyService.class);
+        Log.e(TAG, "GG"+this );
         startService(intent);
         Log.e(TAG, "onCreate: 服务启动了" );
     }

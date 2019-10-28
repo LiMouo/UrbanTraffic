@@ -13,15 +13,16 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
+            >
+<!--            layout_centerInParent 相对于父控件居中-->
             <TextView
+                android:id="@+id/tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="自动报警: "
                 android:textColor="#000000"
                 android:textSize="20sp" />
@@ -31,11 +32,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
-
+                android:layout_toRightOf="@id/tv"
                 android:drawableRight="@drawable/account_message_select"
                 android:textOff="@null"
                 android:textOn="@null" />
-        </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="29dp"
+                android:text="注: 为空 或者 为0 将不会监听阈值" />
+        </RelativeLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -102,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:hint="1000"
+                    android:hint="100"
                     android:maxLength="4"
                     android:digits="0123456789"
                     android:padding="5dp" />
@@ -134,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:hint="1000"
+                    android:hint="3500"
                     android:maxLength="5"
                     android:digits="0123456789"
                     android:padding="5dp" />
@@ -165,23 +174,23 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CQ2:"
+                    android:text="CO₂:"
                     android:textColor="#000"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/et_cq2"
+                    android:id="@+id/et_co2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:hint="1000"
+                    android:hint="9000"
                     android:maxLength="5"
                     android:digits="0123456789"
                     android:padding="5dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CO₂"
+                    android:text="mg/m3"
                     android:textColor="#000"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -206,7 +215,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:hint="1000"
+                    android:hint="300"
                     android:digits="0123456789"
                     android:maxLength="4"
                     android:padding="5dp" />
@@ -239,6 +248,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:hint="4"
+                    android:maxLength="1"
                     android:digits="0123456789"
                     android:padding="5dp" />
                 <TextView

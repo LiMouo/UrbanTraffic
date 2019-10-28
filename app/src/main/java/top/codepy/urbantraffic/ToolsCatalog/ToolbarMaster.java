@@ -81,11 +81,11 @@ public class ToolbarMaster extends LinearLayout {
                                 intent = new Intent(mContext, EnvironActivity.class);
                                 mContext.startActivity(intent);
                                 break;
-                            case R.id.menu_realtime:
-                                Log.e(TAG, "实时显示 ");
-                                intent = new Intent(mContext, RealtimeDisplayActivity.class);
-                                mContext.startActivity(intent);
-                                break;
+//                            case R.id.menu_realtime:
+//                                Log.e(TAG, "实时显示 ");
+//                                intent = new Intent(mContext, RealtimeDisplayActivity.class);
+//                                mContext.startActivity(intent);
+//                                break;
                             case R.id.menu_Threshold:
                                 Log.e(TAG, "阈值设置 ");
                                 intent = new Intent(mContext, ThresholdActivity.class);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -53,7 +54,8 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
     private LineDataSet set;
     private Boolean isTrue = true;
     private Handler handler = new Handler();
-
+    ArrayList<Entry> temperature_data;
+    int pos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +69,9 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
         db = environMaster.getReadableDatabase();
         ToolbarMaster.setTitle("实时显示");
         ToolbarMaster.MenuCreate();
+        Intent intent = getIntent();
+        pos = intent.getIntExtra("pos",1);
+        //Log.e(TAG, "onCreate: "+pos );
         initTextView();      //找到控件TextView
         initViewPager();     //设置viewPager 渲染
         new Thread(new Runnable() {
@@ -128,7 +133,7 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
         viewData.add(inflater.inflate(R.layout.realtime_view_5, null));
         viewData.add(inflater.inflate(R.layout.realtime_view_6, null));
         viewPager.setAdapter(new RealtimePagerAdapter());
-        viewPager.setCurrentItem(0);
+        viewPager.setCurrentItem(pos);
         textViewData.get(0).setBackgroundResource(R.drawable.realtime_back);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -177,7 +182,7 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
      */
     private void getSQLiteDate(int pos) {
         cursor = db.query("environ", null, null, null, null, null, null);
-        ArrayList<Entry> temperature_data = new ArrayList<>();
+        temperature_data = new ArrayList<>();
         ArrayList<Entry> humidity_data = new ArrayList<>();
         ArrayList<Entry> LightIntensity_data = new ArrayList<>();
         ArrayList<Entry> cq2_data = new ArrayList<>();
@@ -190,7 +195,7 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
                 int temperature = cursor.getInt(cursor.getColumnIndex("temperature"));       //温度
                 int humidity = cursor.getInt(cursor.getColumnIndex("humidity"));             //湿度
                 int LightIntensity = cursor.getInt(cursor.getColumnIndex("LightIntensity")); //光照
-                int cq2 = cursor.getInt(cursor.getColumnIndex("cq2"));                       //CQ2
+                int co2 = cursor.getInt(cursor.getColumnIndex("co2"));                       //CQ2
                 int pm25 = cursor.getInt(cursor.getColumnIndex("pm25"));                     //PM2.5
                 int Status = cursor.getInt(cursor.getColumnIndex("Status"));                 //道路状态
                 if (count == 0) {
@@ -204,7 +209,7 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
                 temperature_data.add(new Entry(count += 3, temperature, datetime));
                 humidity_data.add(new Entry(count, humidity, datetime));
                 LightIntensity_data.add(new Entry(count, LightIntensity, datetime));
-                cq2_data.add(new Entry(count, cq2, datetime));
+                cq2_data.add(new Entry(count, co2, datetime));
                 pm25_data.add(new Entry(count, pm25, datetime));
                 Status_data.add(new Entry(count, Status, datetime));
             } while (cursor.moveToNext());
@@ -240,7 +245,7 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
         set.setColor(Color.BLACK);  //设置线条颜色
         set.setDrawCircleHole(false);
         set.setFormLineWidth(1);
-        set.setDrawValues(true);          //设置文子是否显示
+        set.setDrawValues(true);          //设置圆点文字是否显示
         set.setValueTextColor(Color.WHITE); //文字显示颜色
         set.setValueTextSize(9f);         //设置文字显示大小
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
@@ -250,7 +255,7 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
         LineData lineData = new LineData(dataSets);
         setLincChart(lineChart, values); //设置整个图标的样式
         lineChart.setData(lineData);
-        Log.e(TAG, "加载数据完成 " + lineChart);
+        //Log.e(TAG, "加载数据完成 " + lineChart);
     }
 
     private void setLincChart(LineChart lincChart, final ArrayList<Entry> values) {
@@ -258,6 +263,7 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
         lincChart.setLogEnabled(false);             /*设置不显示日志*/
         lincChart.setDrawBorders(false);            /*设置不显示表格边框线*/
         lincChart.setDescription(null);             /*设置图标的描述文子为空*/
+        lincChart.getLegend().setEnabled(false);    /*设置描述标签颜色不显示*/
         lincChart.notifyDataSetChanged(); // let the chart know it's data changed
         lincChart.invalidate(); // refresh
         /*--------------------------------------设置 X 坐标--------------------------------------*/
@@ -270,8 +276,9 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
         xAxis.setAxisLineColor(Color.WHITE);            /* 设置 X轴 线条颜色*/
         xAxis.setDrawGridLines(false);                  /* 设置 X轴 表格线 竖线 不显示 */
         xAxis.setEnabled(true);                         /* 设置 X轴 是否显示*/
-        xAxis.setLabelCount(22);                        /* 设置 X轴显示的个数*/
+        xAxis.setLabelCount(temperature_data.size()+1);                        /* 设置 X轴显示的个数*/
         xAxis.setDrawLabels(true);
+        //xAxis.setLabelRotationAngle(-90);             /* 设置 X轴 字体显示方向*/
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {

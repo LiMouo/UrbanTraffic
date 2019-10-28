@@ -16,7 +16,7 @@ public class SQLiteEnvironMaster extends SQLiteOpenHelper {
             "temperature integer," +    /*温度*/
             "humidity integer," +       /*湿度*/
             "LightIntensity integer," + /*光照*/
-            "cq2 integer," +            /*CQ2*/
+            "co2 integer," +            /*CQ2*/
             "pm25 integer," +           /*pm2.5*/
             "Status integer,"+          /*道路状态*/
             "datetime text)";           /*时间*/

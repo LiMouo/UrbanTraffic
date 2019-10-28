@@ -35,6 +35,8 @@ public class MyService extends Service {
     private Boolean isService = true;
 
     public MyService() {
+//        Log.e(TAG, "MyService: "+this );
+//        Log.e(TAG, "MyService: "+context );
     }
 
     @Override
@@ -118,7 +120,7 @@ public class MyService extends Service {
         ContentValues values = new ContentValues();
         try {
             values.put("pm25", j1.getString("pm2.5"));
-            values.put("cq2", j1.getString("co2"));
+            values.put("co2", j1.getString("co2"));
             values.put("LightIntensity", j1.getString("LightIntensity"));
             values.put("humidity", j1.getString("humidity"));
             values.put("temperature", j1.getString("temperature"));

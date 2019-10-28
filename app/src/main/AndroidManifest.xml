@@ -12,10 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <service
+            android:name=".ThresholdCatalog.ThresholdService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".ThresholdCatalog.ThresholdActivity"
             android:label="阈值"
-            android:screenOrientation="sensorLandscape"></activity>
+            android:screenOrientation="sensorLandscape" />
 
         <service
             android:name=".EnvironCatalog.MyService"
