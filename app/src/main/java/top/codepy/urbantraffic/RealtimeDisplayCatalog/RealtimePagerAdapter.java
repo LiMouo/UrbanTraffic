@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-public class RealtimeViewAdapter extends PagerAdapter {
+public class RealtimePagerAdapter extends PagerAdapter {
 
 
     @Override

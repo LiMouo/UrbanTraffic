@@ -123,7 +123,7 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
         viewData.add(inflater.inflate(R.layout.realtime_view_4, null));
         viewData.add(inflater.inflate(R.layout.realtime_view_5, null));
         viewData.add(inflater.inflate(R.layout.realtime_view_6, null));
-        viewPager.setAdapter(new RealtimeViewAdapter());
+        viewPager.setAdapter(new RealtimePagerAdapter());
         viewPager.setCurrentItem(0);
         textViewData.get(0).setBackgroundResource(R.drawable.realtime_back);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
