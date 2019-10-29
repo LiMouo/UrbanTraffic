@@ -3,7 +3,7 @@
     package="top.codepy.urbantraffic">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <!--    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>-->
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -16,11 +16,11 @@
             android:name=".ThresholdCatalog.ThresholdService"
             android:enabled="true"
             android:exported="true"></service>
-
         <activity
             android:name=".ThresholdCatalog.ThresholdActivity"
             android:label="阈值"
-            android:screenOrientation="sensorLandscape" />
+            android:screenOrientation="sensorLandscape"
+            android:launchMode="singleTask"/>
 
         <service
             android:name=".EnvironCatalog.MyService"

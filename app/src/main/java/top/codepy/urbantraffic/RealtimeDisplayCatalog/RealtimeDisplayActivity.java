@@ -240,14 +240,16 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
     private void setChartData(ArrayList<Entry> values, LineChart lineChart) {
         set = new LineDataSet(values, null);
         set.setFormLineWidth(1);
-        set.setCircleColor(Color.BLACK); //设置顶点圆圈颜色
+        set.setCircleColor(Color.BLUE); //设置顶点圆圈颜色
+        set.setCircleRadius(4f);   /*设置圆点大小*/
         set.setLineWidth(1);      //设置线条粗细
-        set.setColor(Color.BLACK);  //设置线条颜色
+        set.setColor(Color.CYAN);  //设置线条颜色
         set.setDrawCircleHole(false);
         set.setFormLineWidth(1);
         set.setDrawValues(true);          //设置圆点文字是否显示
         set.setValueTextColor(Color.WHITE); //文字显示颜色
         set.setValueTextSize(9f);         //设置文字显示大小
+
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         //添加数据集
         dataSets.add(set);
