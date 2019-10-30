@@ -28,6 +28,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import top.codepy.urbantraffic.EnvironCatalog.MyService;
 import top.codepy.urbantraffic.R;
 import top.codepy.urbantraffic.SQLiteCatalog.SQLiteEnvironMaster;
 import top.codepy.urbantraffic.ToolsCatalog.ToolbarMaster;
@@ -198,20 +199,13 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
                 int co2 = cursor.getInt(cursor.getColumnIndex("co2"));                       //CQ2
                 int pm25 = cursor.getInt(cursor.getColumnIndex("pm25"));                     //PM2.5
                 int Status = cursor.getInt(cursor.getColumnIndex("Status"));                 //道路状态
-                if (count == 0) {
-                    temperature_data.add(new Entry(count, 0, "0"));
-                    humidity_data.add(new Entry(count, 0, "0"));
-                    LightIntensity_data.add(new Entry(count, 0, "0"));
-                    cq2_data.add(new Entry(count, 0, "0"));
-                    pm25_data.add(new Entry(count, 0, "0"));
-                    Status_data.add(new Entry(count, 0, "0"));
-                }
-                temperature_data.add(new Entry(count += 3, temperature, datetime));
+                if(!(count == 20)){
+                temperature_data.add(new Entry(count, temperature, datetime));
                 humidity_data.add(new Entry(count, humidity, datetime));
                 LightIntensity_data.add(new Entry(count, LightIntensity, datetime));
                 cq2_data.add(new Entry(count, co2, datetime));
                 pm25_data.add(new Entry(count, pm25, datetime));
-                Status_data.add(new Entry(count, Status, datetime));
+                Status_data.add(new Entry(count++, Status, datetime));}
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -271,27 +265,35 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
         /*--------------------------------------设置 X 坐标--------------------------------------*/
         XAxis xAxis = lincChart.getXAxis();
         xAxis.setAvoidFirstLastClipping(true);          /* 设置 true,将避免图表或屏幕的边缘的第一个和最后一个轴中的标签条目被裁剪*/
-        xAxis.setAxisMinimum(3);                        /* 设置 最小值 从3 开始*/
+        xAxis.setAxisMinimum(0);                        /* 设置 最小值 从0 开始*/
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);  /* 设置 X轴底部显示 */
         xAxis.setAxisLineWidth(1);                      /* 设置 显示宽度*/
         //xAxis.setDrawAxisLine(true);                  /* 设置 图标里的横线显示*/
         xAxis.setAxisLineColor(Color.WHITE);            /* 设置 X轴 线条颜色*/
         xAxis.setDrawGridLines(false);                  /* 设置 X轴 表格线 竖线 不显示 */
+        xAxis.setGridColor(Color.WHITE);               /* 设置 表格里的线条颜色*/
         xAxis.setEnabled(true);                         /* 设置 X轴 是否显示*/
-        xAxis.setLabelCount(temperature_data.size()+1);                        /* 设置 X轴显示的个数*/
+        //xAxis.setGranularity(1);                        /* 设置 X轴 从1开始*/
+        xAxis.setLabelCount(temperature_data.size(),true); /* 设置 X轴显示的个数 第二个参数强行等分*/
+        Log.e(TAG, "X轴显示:"+temperature_data.size() );
         xAxis.setDrawLabels(true);
-        //xAxis.setLabelRotationAngle(-90);             /* 设置 X轴 字体显示方向*/
+        xAxis.setLabelRotationAngle(-90);             /* 设置 X轴 字体显示方向*/
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-                //Log.e("GG", "getFormattedValue: " + value);
-                return values.get((int) value / 3).getData() + "";
+                //Log.e(TAG, "getFormattedValue => " + value);
+                int v = (int) value;
+                if (v < values.size() && v >= 0) {
+                    return values.get(v).getData().toString();
+                } else {
+                    return "";
+                }
             }
         });
         /*-------------------------------万恶的分割线 设置Y轴 Left--------------------------------*/
         YAxis LyAxis = lincChart.getAxisLeft();           /* 获得 最左边的Y轴*/
-        LyAxis.setDrawGridLines(true);                   /* 设置 Y轴表格线 不显示 */
-        LyAxis.setGridColor(Color.WHITE);
+        LyAxis.setDrawGridLines(true);                    /* 设置 Y轴表格线 即表格 里的横线 */
+        LyAxis.setGridColor(Color.CYAN);
         LyAxis.setDrawAxisLine(true);                     /* 设置 Y轴轴线 是否显示*/
         LyAxis.setEnabled(true);                          /* 设置 Y轴 是否显示*/
         LyAxis.setAxisLineWidth(1);                       /* 设置 Y轴 显示宽度*/
@@ -311,6 +313,8 @@ public class RealtimeDisplayActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         isTrue = false;
+        Intent intent = new Intent(this, MyService.class);
+        stopService(intent);
     }
 }
 

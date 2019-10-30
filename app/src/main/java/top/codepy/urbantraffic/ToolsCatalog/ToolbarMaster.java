@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 
+import top.codepy.urbantraffic.AccountCatalog.AccountActivity;
 import top.codepy.urbantraffic.BillCatalog.BillActivity;
 import top.codepy.urbantraffic.ETCCatalog.ETCActivity;
 import top.codepy.urbantraffic.EnvironCatalog.EnvironActivity;
@@ -25,6 +27,7 @@ import top.codepy.urbantraffic.RealtimeDisplayCatalog.RealtimeDisplayActivity;
 import top.codepy.urbantraffic.RegistryCatalog.RegistryActivity;
 import top.codepy.urbantraffic.ThresholdCatalog.ThresholdActivity;
 import top.codepy.urbantraffic.TrafficLightsCatalog.TrafficLightsActivity;
+import top.codepy.urbantraffic.TripCatalog.TripActivity;
 import top.codepy.urbantraffic.ViolationCatalog.ViolationActivity;
 
 public class ToolbarMaster extends LinearLayout {
@@ -32,6 +35,7 @@ public class ToolbarMaster extends LinearLayout {
     private static Context mContext;
     private static Toolbar toolbar;
     private static TextView title;
+    private static Button btn_account;
 
     public ToolbarMaster(final Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -40,7 +44,7 @@ public class ToolbarMaster extends LinearLayout {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.menu);
         title = findViewById(R.id.toolbar_title);
-
+        btn_account = findViewById(R.id.btn_account);
     }
 
     public static void MenuCreate() {
@@ -81,14 +85,14 @@ public class ToolbarMaster extends LinearLayout {
                                 intent = new Intent(mContext, EnvironActivity.class);
                                 mContext.startActivity(intent);
                                 break;
-//                            case R.id.menu_realtime:
-//                                Log.e(TAG, "实时显示 ");
-//                                intent = new Intent(mContext, RealtimeDisplayActivity.class);
-//                                mContext.startActivity(intent);
-//                                break;
                             case R.id.menu_Threshold:
                                 Log.e(TAG, "阈值设置 ");
                                 intent = new Intent(mContext, ThresholdActivity.class);
+                                mContext.startActivity(intent);
+                                break;
+                            case R.id.menu_Trip:
+                                Log.e(TAG, "实时显示 ");
+                                intent = new Intent(mContext, TripActivity.class);
                                 mContext.startActivity(intent);
                                 break;
                         }
@@ -112,7 +116,18 @@ public class ToolbarMaster extends LinearLayout {
 
     }
 
+    public static void setAccount() {
+        btn_account.setVisibility(VISIBLE);
+        btn_account.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, AccountActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
+    }
+
     public static void setTitle(String T) {
-        title.setText(T);
+        title.setText(T); /*设置Title*/
     }
 }

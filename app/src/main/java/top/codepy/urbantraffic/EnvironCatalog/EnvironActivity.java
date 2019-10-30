@@ -64,45 +64,6 @@ public class EnvironActivity extends AppCompatActivity {
         Log.e(TAG, "onCreate: 服务启动了" );
     }
 
-    private void getData() {
-        final String url = "http://192.168.3.5:8088/transportservice/action/GetAllSense.do";
-        Map<String, String> map = new HashMap<>();
-        map.put("UserName", "user1");
-        final JSONObject jsonObject = new JSONObject(map);
-
-        final String url1 = "http://192.168.3.5:8088/transportservice/action/GetRoadStatus.do";
-        Map<String, String> map1 = new HashMap<>();
-        map1.put("RoadId", "1");
-        map1.put("UserName", "user1");
-        final JSONObject jsonObject1 = new JSONObject(map1);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                do {
-                    OkHttpData.sendConnect(url, jsonObject.toString());
-                    Log.e(TAG, "环境指标:" + OkHttpData.JsonObjectRead().toString());
-                    j1 = OkHttpData.JsonObjectRead();
-                    OkHttpData.sendConnect(url1, jsonObject1.toString());
-                    Log.e(TAG, "道路指标:" + OkHttpData.JsonObjectRead().toString());
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            recycler_environ.setAdapter(new EnvironAdapter(EnvironActivity.this, json(OkHttpData.JsonObjectRead())));
-                            Log.e(TAG, "------数据写入完------");
-                        }
-                    });
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        //e.printStackTrace();
-                    }
-                } while (isGet);
-            }
-
-
-        }).start();
-    }
-
     public ContentValues json(JSONObject j2) {
         // Log.e(TAG, "j1: " + j1);
         // Log.e(TAG, "j2: " + j2);

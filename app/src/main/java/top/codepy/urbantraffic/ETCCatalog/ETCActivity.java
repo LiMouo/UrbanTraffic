@@ -54,7 +54,7 @@ public class ETCActivity extends Activity {
         setContentView(R.layout.activity_etc);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //状态栏隐藏
         ToolbarMaster.MenuCreate(); /*创建Menu 菜单*/
-        ToolbarMaster.setTitle("账户管理");
+        ToolbarMaster.setTitle("我的账户");
         billMaster = new SQLiteBillMaster(this,"Bill.db");
         db = billMaster.getWritableDatabase();
         setToolbar();

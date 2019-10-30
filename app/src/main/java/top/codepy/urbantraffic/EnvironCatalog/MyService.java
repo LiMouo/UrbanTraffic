@@ -53,26 +53,24 @@ public class MyService extends Service {
         db = environMaster.getWritableDatabase();
         getData();
     }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e(TAG, "onStartCommand 服务运行中" + i);
         i++;
         return super.onStartCommand(intent, flags, startId);
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e(TAG, "onDestroy 活动被停止销毁");
-    }
+        isService = false;
+        Log.e(TAG, "onDestroy 服务销毁");
 
+    }
     private void getData() {
         final String url = "http://192.168.3.5:8088/transportservice/action/GetAllSense.do";
         Map<String, String> map = new HashMap<>();
         map.put("UserName", "user1");
         final JSONObject jsonObject = new JSONObject(map);
-
         final String url1 = "http://192.168.3.5:8088/transportservice/action/GetRoadStatus.do";
         Map<String, String> map1 = new HashMap<>();
         map1.put("RoadId", "1");

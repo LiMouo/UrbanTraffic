@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_user"
-        android:title="账户管理"></item>
+        android:title="我的账户"></item>
     <item
         android:id="@+id/menu_green"
         android:title="红绿灯管理"></item>
@@ -15,10 +15,11 @@
     <item
         android:id="@+id/menu_environ"
         android:title="环境指标"></item>
-<!--    <item-->
-<!--        android:id="@+id/menu_realtime"-->
-<!--        android:title="实时显示"></item>-->
     <item
         android:id="@+id/menu_Threshold"
         android:title="阈值设置"></item>
+    <item
+        android:id="@+id/menu_Trip"
+        android:title="出行管理"></item>
+
 </menu>

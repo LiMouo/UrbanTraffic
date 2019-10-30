@@ -1,22 +1,9 @@
 package top.codepy.urbantraffic.ThresholdCatalog;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -24,8 +11,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +22,7 @@ import java.util.List;
 import top.codepy.urbantraffic.R;
 import top.codepy.urbantraffic.ToolsCatalog.ToolbarMaster;
 
-public class ThresholdActivity extends AppCompatActivity {
+public class ThresholdActivityback extends AppCompatActivity {
     private static final String TAG = "阈值设置(Threshold)";
     private List<EditText> editTextList;
     private ToggleButton toggle;
@@ -66,7 +55,7 @@ public class ThresholdActivity extends AppCompatActivity {
 
     private void setService() {
         if (preferences.getBoolean("isThreshold", true)) {
-            Intent startIntent = new Intent(ThresholdActivity.this, ThresholdService.class);
+            Intent startIntent = new Intent(ThresholdActivityback.this, ThresholdService.class);
             startService(startIntent); /*启动服务*/
         }
     }
@@ -121,7 +110,7 @@ public class ThresholdActivity extends AppCompatActivity {
                     editor.putBoolean("isThreshold", b);
                     editor.apply();
                     saveThreshold();
-                    Intent startIntent = new Intent(ThresholdActivity.this, ThresholdService.class);
+                    Intent startIntent = new Intent(ThresholdActivityback.this, ThresholdService.class);
                     startService(startIntent); /*启动服务*/
                     for (EditText e : editTextList) {
                         e.setFocusable(false);              //不可获取 焦点
@@ -129,7 +118,7 @@ public class ThresholdActivity extends AppCompatActivity {
                         btn_threshold.setEnabled(false);
                     }
                 } else {
-                    Intent stopIntent = new Intent(ThresholdActivity.this, ThresholdService.class);
+                    Intent stopIntent = new Intent(ThresholdActivityback.this, ThresholdService.class);
                     stopService(stopIntent); /*关闭服务*/
                     editor.putBoolean("isThreshold", b);
                     editor.apply();
@@ -164,19 +153,5 @@ public class ThresholdActivity extends AppCompatActivity {
         editor.apply();
         Log.e(TAG, "本地文件写入成功");
         editor.clear();
-    }
-
-   public void stopError(){
-        Intent stopIntent = new Intent(ThresholdActivity.this, ThresholdService.class);
-        stopService(stopIntent); /*关闭服务*/
-        editor.putBoolean("isThreshold", false);
-        editor.apply();
-        saveThreshold();
-        for (int i = editTextList.size() - 1; i >= 0; i--) {
-            editTextList.get(i).setFocusable(true);
-            editTextList.get(i).setFocusableInTouchMode(true);
-            editTextList.get(i).requestFocus();
-            btn_threshold.setEnabled(true);
-        }
     }
 }
