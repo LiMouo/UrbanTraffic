@@ -37,7 +37,7 @@ public class ThresholdService extends Service {
     private List<Map<String, String>> list;
     private Map<String, String> map;
     private Handler handler = new Handler();
-    public static Boolean isTrue = true;
+    public static Boolean isTrue;
     private String[] arr = new String[6];
     private SharedPreferences.Editor editor;
     public ThresholdService() {
@@ -50,6 +50,7 @@ public class ThresholdService extends Service {
         editor = getSharedPreferences("Threshold", MODE_PRIVATE).edit();
         preferences = getSharedPreferences("Threshold", MODE_PRIVATE);
         manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        isTrue = true;
     }
 
     @Override

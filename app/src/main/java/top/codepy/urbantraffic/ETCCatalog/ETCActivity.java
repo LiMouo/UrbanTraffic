@@ -55,6 +55,7 @@ public class ETCActivity extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //状态栏隐藏
         ToolbarMaster.MenuCreate(); /*创建Menu 菜单*/
         ToolbarMaster.setTitle("我的账户");
+        ToolbarMaster.setAccount();
         billMaster = new SQLiteBillMaster(this,"Bill.db");
         db = billMaster.getWritableDatabase();
         setToolbar();

@@ -62,17 +62,12 @@ public class TripActivity extends AppCompatActivity implements CompoundButton.On
         listToggleButton.add((ToggleButton) findViewById(R.id.tog_one)); //按钮ID
         listToggleButton.add((ToggleButton) findViewById(R.id.tog_two));
         listToggleButton.add((ToggleButton) findViewById(R.id.tog_three));
-        setDate(getdate());
+        setDate(getdate(),getDay());
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
                     for (int i = 0; i < 3; i++) {
-                        try {
-                            Thread.sleep(1500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
                         final int finalI = i;
                         handler.post(new Runnable() {
                             @Override
@@ -80,6 +75,11 @@ public class TripActivity extends AppCompatActivity implements CompoundButton.On
                                 setToggle(finalI);
                             }
                         });
+                        try {
+                            Thread.sleep(1500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -115,9 +115,17 @@ public class TripActivity extends AppCompatActivity implements CompoundButton.On
         return time;
     }
 
-    private void setDate(String date) {
+    private static int getDay() {
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd");
+        String time = format.format(date);
+        int day = Integer.parseInt(time);
+        Log.e(TAG, "得到时间: " + time);
+        return day;
+    }
+
+    private void setDate(String date, int day) {
         listTextView.get(3).setText(date);
-        int day = Integer.parseInt(date.substring(date.length() - 3, date.length() - 1));
         Log.e(TAG, "日期: " + day); //当前日期
         if (day % 2 == 0) {
             Log.e(TAG, "双号");
@@ -187,7 +195,7 @@ public class TripActivity extends AppCompatActivity implements CompoundButton.On
                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                         Log.e(TAG, "用户输入日期: " + i + "年" + i1 + "月" + i2 + "日");
                         String date = i + "年" + i1 + "月" + i2 + "日";
-                        setDate(date);
+                        setDate(date, i2);
                     }
                 }, mYear, mMonth, mDay);
                 pickerDialog.show();

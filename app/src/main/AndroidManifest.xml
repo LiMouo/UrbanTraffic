@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AccountCatalog.AccountActivity"></activity>
         <activity
             android:name=".TripCatalog.TripActivity"
             android:launchMode="singleTask"
@@ -26,6 +25,11 @@
         <activity
             android:name=".ThresholdCatalog.ThresholdActivity"
             android:label="阈值"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".AccountCatalog.AccountActivity"
+            android:label="账户管理"
             android:launchMode="singleTask"
             android:screenOrientation="sensorLandscape" />
 

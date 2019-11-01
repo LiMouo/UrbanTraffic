@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -17,14 +18,13 @@ import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 
+import java.util.List;
+
 import top.codepy.urbantraffic.AccountCatalog.AccountActivity;
 import top.codepy.urbantraffic.BillCatalog.BillActivity;
 import top.codepy.urbantraffic.ETCCatalog.ETCActivity;
 import top.codepy.urbantraffic.EnvironCatalog.EnvironActivity;
-import top.codepy.urbantraffic.LoginCatalog.LoginActivity;
 import top.codepy.urbantraffic.R;
-import top.codepy.urbantraffic.RealtimeDisplayCatalog.RealtimeDisplayActivity;
-import top.codepy.urbantraffic.RegistryCatalog.RegistryActivity;
 import top.codepy.urbantraffic.ThresholdCatalog.ThresholdActivity;
 import top.codepy.urbantraffic.TrafficLightsCatalog.TrafficLightsActivity;
 import top.codepy.urbantraffic.TripCatalog.TripActivity;
@@ -35,7 +35,9 @@ public class ToolbarMaster extends LinearLayout {
     private static Context mContext;
     private static Toolbar toolbar;
     private static TextView title;
-    private static Button btn_account;
+    public static Button btn_account, btn_inMoney, btn_Record;
+    public static List<String> list;
+    private static EditText editText;
 
     public ToolbarMaster(final Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -45,6 +47,8 @@ public class ToolbarMaster extends LinearLayout {
         toolbar.setNavigationIcon(R.drawable.menu);
         title = findViewById(R.id.toolbar_title);
         btn_account = findViewById(R.id.btn_account);
+        btn_inMoney = findViewById(R.id.btn_inMoney);
+        btn_Record = findViewById(R.id.btn_Record);
     }
 
     public static void MenuCreate() {
@@ -131,3 +135,4 @@ public class ToolbarMaster extends LinearLayout {
         title.setText(T); /*设置Title*/
     }
 }
+

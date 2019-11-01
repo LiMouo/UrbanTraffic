@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#3AA1DB">
+
         <TextView
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
@@ -14,15 +17,42 @@
             android:layout_gravity="center"
             android:textColor="@color/colorWhite"
             android:textSize="20sp" />
+
         <Button
             android:id="@+id/btn_account"
-            android:layout_gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:background="#00000000"
-            android:textColor="#D3D0D0"
             android:text="账户管理"
-            android:visibility="gone"
-            />
+            android:textColor="#FFFFFF"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="#00000000"
+            android:gravity="center|bottom"
+            android:text="充值记录"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="30dp"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/btn_inMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="30dp"
+            android:background="#00000000"
+            android:gravity="center|bottom"
+            android:text="批量充值"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"/>
+
     </Toolbar>
 </LinearLayout>

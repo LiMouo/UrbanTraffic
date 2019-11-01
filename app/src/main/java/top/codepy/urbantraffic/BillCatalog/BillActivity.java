@@ -60,7 +60,6 @@ public class BillActivity extends Activity {
         setContentView(R.layout.activity_bill_master);
         ToolbarMaster.setTitle("账单管理");
         ToolbarMaster.MenuCreate();
-        ToolbarMaster.setAccount();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         sqLiteMaster = new SQLiteBillMaster(this, "Bill.db");
         getSqlBill();
