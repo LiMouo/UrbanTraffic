@@ -269,7 +269,7 @@ public class AccountActivity extends AppCompatActivity {
                 public void onResponse(@NotNull Call call, @NotNull final Response response) throws IOException {
                     try {
                         int code = response.code();
-                        JSONObject data = new JSONObject(response.body().string());
+                        JSONObject data =  new JSONObject(response.body().string());
                         Log.e(TAG, "得到数据: " + data);
                         if (code == 200) {
                             handler.post(new Runnable() {
