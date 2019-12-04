@@ -22,6 +22,7 @@ import java.util.List;
 
 import top.codepy.urbantraffic.AccountCatalog.AccountActivity;
 import top.codepy.urbantraffic.BillCatalog.BillActivity;
+import top.codepy.urbantraffic.BusQueryCatalog.BusQueryActivity;
 import top.codepy.urbantraffic.ETCCatalog.ETCActivity;
 import top.codepy.urbantraffic.EnvironCatalog.EnvironActivity;
 import top.codepy.urbantraffic.R;
@@ -97,6 +98,11 @@ public class ToolbarMaster extends LinearLayout {
                             case R.id.menu_Trip:
                                 Log.e(TAG, "实时显示 ");
                                 intent = new Intent(mContext, TripActivity.class);
+                                mContext.startActivity(intent);
+                                break;
+                            case R.id.menu_BusQuery:
+                                Log.e(TAG, "公交查询 ");
+                                intent = new Intent(mContext, BusQueryActivity.class);
                                 mContext.startActivity(intent);
                                 break;
                         }

@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
         <activity
             android:name=".TripCatalog.TripActivity"
             android:launchMode="singleTask"
@@ -38,6 +39,11 @@
             android:enabled="true"
             android:exported="true" />
 
+        <activity
+            android:name=".BusQueryCatalog.BusQueryActivity"
+            android:label="公交查询"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorLandscape"></activity>
         <activity
             android:name=".RealtimeDisplayCatalog.RealtimeDisplayActivity"
             android:label="实时显示"

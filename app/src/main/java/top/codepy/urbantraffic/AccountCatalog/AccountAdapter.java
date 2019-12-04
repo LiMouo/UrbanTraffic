@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +28,6 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
     private Map<String, String> map;
     public static List<String> car_id;
     public static List<String> car_plate;
-    private int position = 0;
     public static ButtonListener mListener;
 
     public AccountAdapter(Context context, List<Map<String, String>> list) {
@@ -53,6 +52,9 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         holder.item_plate.setText(map.get("item_plate"));
         holder.item_carName.setText(map.get("item_carName"));
         holder.item_carMoney.setText(map.get("item_carMoney"));
+        if(Integer.parseInt(map.get("item_carMoney")) < 1000){
+            holder.lout.setBackgroundResource(R.drawable.yellow);
+        }
         holder.item_carIog.setImageResource(Integer.parseInt(map.get("item_carIog")));
         holder.item_carCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -71,12 +73,10 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         });
 
         holder.item_btn_submit.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                car_id.add(String.valueOf(position + 1));
-                car_plate.add(holder.item_plate.getText().toString());
-                Log.e(TAG, "onClick: " +position +holder.item_plate.getText());
-                mListener.btn_OnClick(position);
+                mListener.btn_OnClick(position,holder.item_plate.getText().toString());
             }
         });
     }
@@ -91,7 +91,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         private ImageView item_carIog;
         private CheckBox item_carCheckBox;
         private Button item_btn_submit;
-
+        private LinearLayout lout;
         public AccountViewHolder(@NonNull View itemView) {
             super(itemView);
             item_carId = itemView.findViewById(R.id.item_carId); /*车辆ID*/
@@ -101,15 +101,14 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
             item_carMoney = itemView.findViewById(R.id.item_carMoney); /*车主余额*/
             item_carCheckBox = itemView.findViewById(R.id.item_carCheckBox); /*充值多选*/
             item_btn_submit = itemView.findViewById(R.id.item_btn_submit); /*提交*/
+            lout = itemView.findViewById(R.id.lout); /*提交*/
         }
     }
 
     public static void btn(ButtonListener listener) {
         mListener = listener;
     }
-
     interface ButtonListener {
-        void btn_OnClick(int pos);
+        void btn_OnClick(int pos,String name);
     }
-
 }

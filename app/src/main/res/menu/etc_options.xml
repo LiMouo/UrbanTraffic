@@ -21,5 +21,8 @@
     <item
         android:id="@+id/menu_Trip"
         android:title="出行管理"></item>
+    <item
+        android:id="@+id/menu_BusQuery"
+        android:title="公交查询"></item>
 
 </menu>

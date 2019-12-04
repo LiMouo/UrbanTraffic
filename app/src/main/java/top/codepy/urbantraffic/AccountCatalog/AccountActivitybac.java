@@ -69,17 +69,7 @@ public class AccountActivitybac extends AppCompatActivity {
         //recycler_account.setAdapter(new AccountAdapter(this));
         recycler_account.addItemDecoration(new MyDecoration());
         setdata();
-        AccountAdapter.btn(new AccountAdapter.ButtonListener() {
-            @Override
-            public void btn_OnClick(int pos) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
 
-                    }
-                }).start();
-            }
-        });
     }
 
     private  void setdata() {
